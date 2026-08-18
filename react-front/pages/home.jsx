@@ -1,13 +1,15 @@
-
 import { useState } from "react";
 import Form from "../components/form";
+import Modal from "../components/modal";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
-      <h2>Wanna join the employees ?</h2>
+      <h2 className="titleHome">
+        Create Employee
+      </h2>
 
       <button
         className="buttonForm"
@@ -17,18 +19,12 @@ export default function Home() {
       </button>
 
       {isOpen && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h2>Employee Form</h2>
-
-            <Form />
-
-            <button onClick={() => setIsOpen(false)}>
-              Fermer
-            </button>
-          </div>
-        </div>
+        <Modal onClose={() => setIsOpen(false)}>
+          <Form onClose={() => setIsOpen(false)} />
+        </Modal>
       )}
     </div>
   );
 }
+  
+
