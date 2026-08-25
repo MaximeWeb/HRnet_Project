@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Form from "../components/form";
-import Modal from "../components/modal";
+import { Modal } from "react-modal-plugin";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,11 +18,11 @@ export default function Home() {
         Open form
       </button>
 
-      {isOpen && (
-        <Modal onClose={() => setIsOpen(false)}>
-          <Form onClose={() => setIsOpen(false)} />
-        </Modal>
-      )}
+     {isOpen && (
+  <Modal onClose={() => setIsOpen(false)}>
+    <Form onClose={() => setIsOpen(false)} />
+  </Modal>
+)}
     </div>
   );
 }

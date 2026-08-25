@@ -183,7 +183,7 @@ export default function currentPage() {
               <th onClick={() => handleSort("startDate")}>
                 Start Date
                 <span className="sort-arrow">
-                  {sortConfig.key === "starDate" ? (
+                  {sortConfig.key === "startDate" ? (
                     sortConfig.direction === "asc" ? (
                       <ArrowUp size={16} />
                     ) : (

@@ -1,6 +1,6 @@
 import "../style/App.css";
 import { Link } from 'react-router-dom';
-import logo from "../src/assets/logoHRnet.png"
+import logo from "../src/assets/logoHRnet.webp"
 
 
 export default function Header() {
@@ -12,7 +12,7 @@ export default function Header() {
          
 <div className="linkHeader">
      <Link className="textlink" to="/current">Current Employees</Link>
-   <Link className="iconHome" to="/"><i className="fa fa-home"></i></Link>  
+   <Link className="iconHome" to="/" aria-label="Accueil"><i className="fa fa-home"></i></Link>  
 </div>
    
    
