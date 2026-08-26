@@ -1,0 +1,226 @@
+.rcp-calendar-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.rcp-date-field {
+  position: relative;
+  width: 100%;
+}
+
+.rcp-date-input {
+  width: 100%;
+  padding: 8px 44px 8px 12px;
+  margin: 0;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+
+  background: white;
+
+  font-size: 14px;
+  color: #111;
+}
+
+/* Cache l'icône calendrier native de Chrome/Edge */
+.rcp-date-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Notre bouton calendrier */
+.rcp-calendar-container .rcp-calendar-button {
+  position: absolute;
+
+  top: 42%;
+  right: 12px;
+
+  transform: translateY(-50%);
+
+  width: 22px;
+  height: 22px;
+
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 0;
+
+  background: transparent;
+
+  color: #6b7280;
+
+  cursor: pointer;
+}
+
+/* Empêche le CSS de HRnet de modifier le bouton */
+.rcp-calendar-container .rcp-calendar-button:hover {
+  background: transparent;
+}
+
+.rcp-calendar-container .rcp-calendar-button:active {
+  transform: translateY(-50%);
+}
+
+.rcp-calendar-button svg {
+  display: block;
+
+  width: 20px;
+  height: 20px;
+}
+
+/* Popup */
+
+.rcp-calendar-popup {
+  position: absolute;
+
+  top: calc(100% + 6px);
+  right: 0;
+
+  width: 320px;
+
+  padding: 16px;
+
+  box-sizing: border-box;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.15);
+
+  z-index: 9999;
+}
+
+/* Header */
+
+.rcp-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.rcp-calendar-header h2 {
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+
+  color: #111;
+}
+
+/* Navigation */
+
+.rcp-calendar-container .rcp-calendar-nav {
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #111;
+
+  font-size: 26px;
+
+  cursor: pointer;
+}
+
+.rcp-calendar-container .rcp-calendar-nav:hover {
+  background: #f3f4f6;
+}
+
+.rcp-calendar-container .rcp-calendar-nav:active {
+  transform: none;
+}
+
+/* Grilles */
+
+.rcp-calendar-weekdays,
+.rcp-calendar-days {
+  display: grid;
+
+  grid-template-columns:
+    repeat(7, 1fr);
+
+  gap: 4px;
+}
+
+/* Noms des jours */
+
+.rcp-calendar-weekday {
+  padding: 6px 0;
+
+  text-align: center;
+
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #6b7280;
+}
+
+/* Jours */
+
+.rcp-calendar-container .rcp-calendar-day {
+  width: 100%;
+  height: 34px;
+
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #111;
+
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.rcp-calendar-container
+  .rcp-calendar-day:hover:not(:disabled) {
+  background: #e6f0fa;
+}
+
+/* Jour sélectionné */
+
+.rcp-calendar-container
+  .rcp-calendar-day.rcp-selected {
+  background: #074c88;
+
+  color: white;
+}
+
+/* Cases vides */
+
+.rcp-calendar-container
+  .rcp-calendar-day.rcp-empty {
+  cursor: default;
+}
+
+/* Désactivé */
+
+.rcp-calendar-container
+  .rcp-calendar-day:disabled {
+  cursor: default;
+}

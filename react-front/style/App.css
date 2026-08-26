@@ -179,25 +179,22 @@ html, body, #root {
   font-size: 14px;
 }
 
-.employee-form button {
+.employee-form > button {
   width: 100%;
   padding: 10px;
   margin-top: 8px;
-
   border: none;
   border-radius: 6px;
-
   background-color: #074c88;
   color: white;
-
   cursor: pointer;
 }
 
-.employee-form button:hover {
+.employee-form > button:hover {
   background-color: #4338ca;
 }
 
-.employee-form button:active {
+.employee-form > button:active {
   transform: scale(0.98);
 }
 
