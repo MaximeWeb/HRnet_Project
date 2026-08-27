@@ -29,11 +29,15 @@ export default function Calendar({ value = "", onChange }) {
 
   // Si la valeur change depuis le composant parent,
   // le calendrier se positionne sur cette date
-  useEffect(() => {
-    if (value) {
-      setCurrentDate(new Date(`${value}T00:00:00`));
-    }
-  }, [value]);
+  const [previousValue, setPreviousValue] = useState(value);
+
+if (value !== previousValue) {
+  setPreviousValue(value);
+
+  if (value) {
+    setCurrentDate(new Date(`${value}T00:00:00`));
+  }
+}
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();

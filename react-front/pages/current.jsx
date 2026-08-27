@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowUp, ArrowDown, ArrowUpDown } from "lucide-react";
 import SearchBar from "../components/searchBar";
 import EntriesSelect from "../components/entriesSelect";
 import Pagination from "../components/pagination";
 
-export default function currentPage() {
-  const [employees, setEmployees] = useState([]);
+export default function CurrentPage() {
+const [employees] = useState(() => {
+  return JSON.parse(localStorage.getItem("employees")) || [];
+});
   const [search, setSearch] = useState("");
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,11 +19,11 @@ export default function currentPage() {
   });
 
   // Récupération des employés depuis le localStorage
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("employees")) || [];
+  // useEffect(() => {
+  //   const data = JSON.parse(localStorage.getItem("employees")) || [];
 
-    setEmployees(data);
-  }, []);
+  //   setEmployees(data);
+  // }, []);
 
   // RECHERCHE
 
