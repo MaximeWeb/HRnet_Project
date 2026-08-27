@@ -1,17 +1,28 @@
 {
   "name": "react-dropmenu-composant",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/react-dropmenu-component.umd.cjs",
+  "module": "./dist/react-dropmenu-component.js",
+  "exports": {
+    ".": {
+      "import": "./dist/react-dropmenu-component.js",
+      "require": "./dist/react-dropmenu-component.umd.cjs"
+    },
+    "./style.css": "./dist/react-dropmenu-component.css"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -22,6 +33,8 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.4",
     "globals": "^17.11.0",
+    "react": "^18.3.1",
+  "react-dom": "^18.3.1",
     "vite": "^8.2.2"
   }
 }

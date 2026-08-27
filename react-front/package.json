@@ -12,11 +12,12 @@
   "dependencies": {
     "lucide-react": "^1.31.0",
     "react": "^18.3.1",
-    "react-calendar-plugin": "file:../react-calendar-plugin",
+    "react-calendar-composant": "file:../react-calendar-composant",
     "react-datatable-composant": "file:../react-datatable-composant",
     "react-dom": "^18.3.1",
+    "react-dropmenu-composant": "file:../react-dropmenu-composant",
     "react-icons": "^5.7.0",
-    "react-modal-plugin": "file:../react-modal-plugin",
+    "react-modal-composant": "file:../react-modal-composant",
     "react-router-dom": "^6.30.3"
   },
   "devDependencies": {

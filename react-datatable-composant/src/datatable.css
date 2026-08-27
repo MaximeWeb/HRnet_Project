@@ -88,13 +88,19 @@
 
 /* SORT */
 
+
 .sort-arrow {
   display: inline-flex;
+  align-items: center;
   margin-left: 6px;
-  font-size: 15px;
   vertical-align: middle;
+    position: relative;
+  top: -4px;
 }
 
+.sort-arrow svg {
+  display: block;
+}
 /* CELLS */
 
 .datatable td {

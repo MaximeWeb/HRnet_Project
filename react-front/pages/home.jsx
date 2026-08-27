@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Form from "../components/form";
-import { Modal } from "react-modal-plugin";
+import { Modal } from "react-modal-composant";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);

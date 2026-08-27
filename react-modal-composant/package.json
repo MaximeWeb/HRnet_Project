@@ -1,21 +1,26 @@
 {
-  "name": "react-calendar-plugin",
+  "name": "react-modal-composant",
   "version": "1.0.0",
   "type": "module",
-  "main": "./dist/react-calendar-plugin.umd.cjs",
-  "module": "./dist/react-calendar-plugin.js",
-  "types": "./dist/index.d.ts",
+
+   "files": [
+  "dist"
+],
+
+  "main": "./dist/react-modal-composant.umd.cjs",
+  "module": "./dist/react-modal-composant.js",
+  "types": "./index.d.ts",
 
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/react-calendar-plugin.js",
-      "require": "./dist/react-calendar-plugin.umd.cjs"
+      "types": "./index.d.ts",
+      "import": "./dist/react-modal-composant.js",
+      "require": "./dist/react-modal-composant.umd.cjs"
     },
-    "./style.css": "./dist/react-calendar-plugin.css"
+    "./style.css": "./dist/react-modal-composant.css"
   },
 
-  "style": "./dist/react-calendar-plugin.css",
+  "style": "./dist/react-modal-composant.css",
 
   "scripts": {
     "dev": "vite",
@@ -30,8 +35,8 @@
   },
 
   "devDependencies": {
-     "react": "^18.3.1",
-  "react-dom": "^18.3.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "@eslint/js": "^10.0.1",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",

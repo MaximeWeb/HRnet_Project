@@ -1,10 +1,9 @@
+import { resolve } from "node:path";
 import {
   defineConfig,
   esmExternalRequirePlugin,
 } from "vite";
-
 import react from "@vitejs/plugin-react";
-import { resolve } from "node:path";
 
 export default defineConfig({
   plugins: [
@@ -21,9 +20,16 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(import.meta.dirname, "src/index.js"),
-      name: "ReactDropMenuComponent",
-      fileName: "react-dropmenu-component",
-      cssFileName: "react-dropmenu-component",
+      name: "ReactCalendarComposant",
+
+      formats: ["es", "umd"],
+
+      fileName: (format) =>
+        format === "es"
+          ? "react-calendar-composant.js"
+          : "react-calendar-composant.umd.cjs",
+
+      cssFileName: "react-calendar-composant",
     },
 
     rolldownOptions: {

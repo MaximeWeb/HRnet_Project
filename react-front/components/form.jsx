@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { states } from "../src/data/statesUS";
-import { Calendar } from "react-calendar-plugin";
-import "react-calendar-plugin/style.css";
+
+import { Calendar } from "react-calendar-composant";
+import "react-calendar-composant/style.css";
+
+import { DropMenu } from "react-dropmenu-composant";
+import "react-dropmenu-composant/style.css";
 
 export default function Form({ onClose }) {
   const [errors, setErrors] = useState({});
@@ -19,6 +23,33 @@ export default function Form({ onClose }) {
     department: "Marketing",
   });
 
+  // OPTIONS DES ÉTATS
+  const stateOptions = states.map((state) => ({
+    value: state.code,
+    label: state.name,
+  }));
+
+  // OPTIONS DES DÉPARTEMENTS
+  const departmentOptions = [
+    {
+      value: "Marketing",
+      label: "Marketing",
+    },
+    {
+      value: "Engineering",
+      label: "Engineering",
+    },
+    {
+      value: "Human Resources",
+      label: "Human Resources",
+    },
+    {
+      value: "Legal",
+      label: "Legal",
+    },
+  ];
+
+  // CHANGEMENT DES INPUTS
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -28,20 +59,27 @@ export default function Form({ onClose }) {
     }));
   };
 
+  // CHANGEMENT DES MENUS DÉROULANTS
+  const handleDropMenuChange = (name, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // CHANGEMENT DES DATES
   const handleDateChange = (name, value) => {
-  setFormData((prev) => ({
-    ...prev,
-    [name]: value,
-  }));
-};
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newErrors = {};
 
-    // Vérifie que le champ n'est pas vide
-    // ou uniquement composé d'espaces
     if (!formData.firstName.trim()) {
       newErrors.firstName = "First Name is required";
     }
@@ -78,32 +116,32 @@ export default function Form({ onClose }) {
       newErrors.department = "Department is required";
     }
 
-    // Il y a des erreurs
+    // IL Y A DES ERREURS
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    // Formulaire valide : on supprime les anciennes erreurs
+    // FORMULAIRE VALIDE
     setErrors({});
 
-    // Récupère les employés existants
+    // RÉCUPÈRE LES EMPLOYÉS EXISTANTS
     const employees =
       JSON.parse(localStorage.getItem("employees")) || [];
 
-    // Ajoute le nouvel employé
+    // AJOUTE LE NOUVEL EMPLOYÉ
     employees.push(formData);
 
-    // Sauvegarde dans localStorage
+    // SAUVEGARDE DANS LOCALSTORAGE
     localStorage.setItem(
       "employees",
-      JSON.stringify(employees)
+      JSON.stringify(employees),
     );
 
-    // Affiche le message de succès
+    // MESSAGE DE SUCCÈS
     setShowSuccess(true);
 
-    // Réinitialise le formulaire
+    // RÉINITIALISE LE FORMULAIRE
     setFormData({
       firstName: "",
       lastName: "",
@@ -116,7 +154,7 @@ export default function Form({ onClose }) {
       department: "Marketing",
     });
 
-    // Ferme la modal après 3,5 secondes
+    // FERME LA MODAL APRÈS 3,5 SECONDES
     setTimeout(() => {
       setShowSuccess(false);
       onClose();
@@ -131,7 +169,10 @@ export default function Form({ onClose }) {
         </div>
       )}
 
-      <form className="employee-form" onSubmit={handleSubmit}>
+      <form
+        className="employee-form"
+        onSubmit={handleSubmit}
+      >
         <h2>Create Employee</h2>
 
         <div className="flex column">
@@ -163,12 +204,12 @@ export default function Form({ onClose }) {
             </span>
           )}
 
-       <Calendar
-  value={formData.birthDate}
-  onChange={(value) =>
-    handleDateChange("birthDate", value)
-  }
-/>
+          <Calendar
+            value={formData.birthDate}
+            onChange={(value) =>
+              handleDateChange("birthDate", value)
+            }
+          />
 
           {errors.birthDate && (
             <span className="error-message">
@@ -176,12 +217,12 @@ export default function Form({ onClose }) {
             </span>
           )}
 
-        <Calendar
-  value={formData.startDate}
-  onChange={(value) =>
-    handleDateChange("startDate", value)
-  }
-/>
+          <Calendar
+            value={formData.startDate}
+            onChange={(value) =>
+              handleDateChange("startDate", value)
+            }
+          />
 
           {errors.startDate && (
             <span className="error-message">
@@ -221,19 +262,16 @@ export default function Form({ onClose }) {
             </span>
           )}
 
-          <select
+          <DropMenu
+            id="state"
             name="state"
+            options={stateOptions}
             value={formData.state}
-            onChange={handleChange}
-          >
-            <option value="">States</option>
-
-            {states.map((state) => (
-              <option key={state.code} value={state.code}>
-                {state.name}
-              </option>
-            ))}
-          </select>
+            onChange={(value) =>
+              handleDropMenuChange("state", value)
+            }
+            placeholder="States"
+          />
 
           {errors.state && (
             <span className="error-message">
@@ -258,18 +296,16 @@ export default function Form({ onClose }) {
 
         <h3>Department</h3>
 
-        <select
+        <DropMenu
+          id="department"
           name="department"
+          options={departmentOptions}
           value={formData.department}
-          onChange={handleChange}
-        >
-          <option value="Marketing">Marketing</option>
-          <option value="Engineering">Engineering</option>
-          <option value="Human Resources">
-            Human Resources
-          </option>
-          <option value="Legal">Legal</option>
-        </select>
+          onChange={(value) =>
+            handleDropMenuChange("department", value)
+          }
+          placeholder="Select a department"
+        />
 
         {errors.department && (
           <span className="error-message">
@@ -277,7 +313,9 @@ export default function Form({ onClose }) {
           </span>
         )}
 
-        <button type="submit">Save</button>
+        <button type="submit">
+          Save
+        </button>
       </form>
     </>
   );

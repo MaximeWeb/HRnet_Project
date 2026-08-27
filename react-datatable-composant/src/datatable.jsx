@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./datatable.css";
+import { ArrowUp, ArrowDown, ArrowUpDown } from "lucide-react";
 
 export default function DataTable({
   data = [],
@@ -61,18 +62,14 @@ export default function DataTable({
     const valueA = a[sortConfig.key] ?? "";
     const valueB = b[sortConfig.key] ?? "";
 
-    const column = columns.find(
-      (column) => column.key === sortConfig.key,
-    );
+    const column = columns.find((column) => column.key === sortConfig.key);
 
     // TRI DES DATES
     if (column?.type === "date") {
       const dateA = new Date(valueA);
       const dateB = new Date(valueB);
 
-      return sortConfig.direction === "asc"
-        ? dateA - dateB
-        : dateB - dateA;
+      return sortConfig.direction === "asc" ? dateA - dateB : dateB - dateA;
     }
 
     // TRI TEXTES / NOMBRES
@@ -82,26 +79,18 @@ export default function DataTable({
         numeric: true,
       });
 
-    return sortConfig.direction === "asc"
-      ? comparison
-      : -comparison;
+    return sortConfig.direction === "asc" ? comparison : -comparison;
   });
 
   // =========================
   // PAGINATION
   // =========================
 
-  const totalPages = Math.ceil(
-    sortedData.length / entriesPerPage,
-  );
+  const totalPages = Math.ceil(sortedData.length / entriesPerPage);
 
-  const startIndex =
-    (currentPage - 1) * entriesPerPage;
+  const startIndex = (currentPage - 1) * entriesPerPage;
 
-  const currentData = sortedData.slice(
-    startIndex,
-    startIndex + entriesPerPage,
-  );
+  const currentData = sortedData.slice(startIndex, startIndex + entriesPerPage);
 
   const handlePrevious = () => {
     if (currentPage > 1) {
@@ -139,17 +128,15 @@ export default function DataTable({
       <div className="datatable-controls">
         {/* ENTRIES SELECT */}
         <div className="datatable-entries">
-          <label htmlFor="datatable-entries-select">
-            Show
-          </label>
+          <label htmlFor="datatable-entries-select">Show</label>
 
           <select
             id="datatable-entries-select"
             value={entriesPerPage}
             onChange={handleEntriesChange}
           >
-              <option value="1">1</option>
-              <option value="2">2</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
@@ -161,9 +148,7 @@ export default function DataTable({
 
         {/* SEARCH */}
         <div className="datatable-search">
-          <label htmlFor="datatable-search-input">
-            Search:
-          </label>
+          <label htmlFor="datatable-search-input">Search:</label>
 
           <input
             id="datatable-search-input"
@@ -193,11 +178,15 @@ export default function DataTable({
 
                   {column.sortable !== false && (
                     <span className="sort-arrow">
-                      {sortConfig.key === column.key
-                        ? sortConfig.direction === "asc"
-                          ? "↑"
-                          : "↓"
-                        : "↕"}
+                      {sortConfig.key === column.key ? (
+                        sortConfig.direction === "asc" ? (
+                          <ArrowUp size={16} />
+                        ) : (
+                          <ArrowDown size={16} />
+                        )
+                      ) : (
+                        <ArrowUpDown size={16} />
+                      )}
                     </span>
                   )}
                 </th>
@@ -210,24 +199,17 @@ export default function DataTable({
               currentData.map((row, rowIndex) => (
                 <tr
                   key={
-                    rowKey && row[rowKey] !== undefined
-                      ? row[rowKey]
-                      : rowIndex
+                    rowKey && row[rowKey] !== undefined ? row[rowKey] : rowIndex
                   }
                 >
                   {columns.map((column) => (
-                    <td key={column.key}>
-                      {row[column.key] ?? ""}
-                    </td>
+                    <td key={column.key}>{row[column.key] ?? ""}</td>
                   ))}
                 </tr>
               ))
             ) : (
               <tr>
-                <td
-                  colSpan={columns.length || 1}
-                  className="no-results"
-                >
+                <td colSpan={columns.length || 1} className="no-results">
                   No employee found
                 </td>
               </tr>
@@ -240,16 +222,9 @@ export default function DataTable({
       <div className="datatable-footer">
         {/* INFO */}
         <div className="datatable-info">
-          Showing{" "}
-          {sortedData.length === 0
-            ? 0
-            : startIndex + 1}{" "}
-          to{" "}
-          {Math.min(
-            startIndex + entriesPerPage,
-            sortedData.length,
-          )}{" "}
-          of {sortedData.length} {entryName}
+          Showing {sortedData.length === 0 ? 0 : startIndex + 1} to{" "}
+          {Math.min(startIndex + entriesPerPage, sortedData.length)} of{" "}
+          {sortedData.length} {entryName}
         </div>
 
         {/* PAGINATION */}
@@ -263,20 +238,13 @@ export default function DataTable({
           </button>
 
           <span>
-            Page{" "}
-            {totalPages === 0
-              ? 0
-              : currentPage}{" "}
-            of {totalPages}
+            Page {totalPages === 0 ? 0 : currentPage} of {totalPages}
           </span>
 
           <button
             type="button"
             onClick={handleNext}
-            disabled={
-              totalPages === 0 ||
-              currentPage >= totalPages
-            }
+            disabled={totalPages === 0 || currentPage >= totalPages}
           >
             Next
           </button>
