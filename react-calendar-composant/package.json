@@ -1,16 +1,13 @@
 {
   "name": "react-calendar-composant",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
-  
   "files": [
-  "dist"
-],
-
+    "dist"
+  ],
   "main": "./dist/react-calendar-composant.umd.cjs",
   "module": "./dist/react-calendar-composant.js",
   "types": "./dist/index.d.ts",
-
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -19,21 +16,17 @@
     },
     "./style.css": "./dist/react-calendar-composant.css"
   },
-
   "style": "./dist/react-calendar-composant.css",
-
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
-
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
-
   "devDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
