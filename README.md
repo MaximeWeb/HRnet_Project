@@ -122,97 +122,69 @@ Le composant permet de créer des listes déroulantes contrôlées et configurab
 
 ### Prérequis
 
-- Node.js compatible avec les versions utilisées par le projet.
-- npm.
-- Git.
+- Node.js
+- npm
+- Git
 
 ### Récupérer le projet
 
 ```bash
 git clone https://github.com/MaximeWeb/HRnet_Project.git
-
 cd HRnet_Project
 ```
 
 ### Installer l'application React
 
-Depuis la racine du projet :
-
 ```bash
-npm install --prefix react-front
+cd react-front
+npm install
 ```
 
-Les composants réutilisables utilisés par HRnet sont déclarés comme dépendances de l'application React et sont installés avec les autres dépendances npm.
+Les quatre composants React réutilisables sont déclarés comme dépendances npm de l'application et sont automatiquement installés avec les autres dépendances.
 
 ### Lancer l'application
 
 ```bash
-npm run dev --prefix react-front
+npm run dev
 ```
 
 Ouvrir ensuite l'adresse indiquée par Vite dans le terminal.
 
 ## Build de production
 
-Pour générer la version de production de HRnet :
+Depuis le dossier `react-front` :
 
 ```bash
-npm run build --prefix react-front
+npm run build
 ```
 
-Les fichiers de production sont générés dans :
+Les fichiers de production sont générés dans le dossier `dist/`.
 
-```text
-react-front/dist/
+Pour tester le build de production :
+
+```bash
+npm run preview
 ```
 
 ## Vérification du code
 
-Pour vérifier le code de l'application React :
+Depuis le dossier `react-front` :
 
 ```bash
-npm run lint --prefix react-front
-```
-
-Les composants peuvent également être vérifiés individuellement :
-
-```bash
-npm run lint --prefix react-modal-composant
-
-npm run lint --prefix react-calendar-composant
-
-npm run lint --prefix react-datatable-composant
-
-npm run lint --prefix react-dropmenu-composant
+npm run lint
 ```
 
 ## Développement des composants
 
-Chaque composant possède son propre projet et son propre `package.json`.
+Les quatre composants React sont également présents dans le dépôt afin de conserver leur code source et de permettre leur développement.
 
-Après modification du code d'un composant, son build peut être généré depuis la racine du projet avec :
+Chaque composant possède son propre projet, son propre `package.json` et son propre `README.md`.
 
-```bash
-npm run build --prefix react-modal-composant
-
-npm run build --prefix react-calendar-composant
-
-npm run build --prefix react-datatable-composant
-
-npm run build --prefix react-dropmenu-composant
-```
-
-Chaque package possède également son propre `README.md` détaillant son installation, son utilisation et ses différentes props.
+Les composants peuvent être développés et compilés indépendamment de l'application HRnet.
 
 ## Stockage des données
 
-Les employés sont enregistrés dans le navigateur sous la clé :
-
-```text
-employees
-```
-
-du `localStorage`.
+Les employés sont enregistrés dans le navigateur sous la clé `employees` du `localStorage`.
 
 L'application ne possède pas de serveur ni de base de données distante.
 
