@@ -1,5 +1,5 @@
 import Header from "./header";
-import Footer from "./footer";
+// import Footer from "./footer";
 import { Outlet } from "react-router-dom";
 export default function Layout() {
   return (
@@ -10,7 +10,7 @@ export default function Layout() {
         {" "}
         <Outlet /> {/* va afficher les enfants ex: home ou about*/}{" "}
       </main>{" "}
-      <Footer />{" "}
+      {/* <Footer />{" "} */}
     </>
   );
 }
